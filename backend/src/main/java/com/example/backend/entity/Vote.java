@@ -9,11 +9,15 @@ public class Vote {
     //ca sa avem o cheie compusa, facem o noua clasa publica care trebuie sa aibe un contructor gol, sa implementam equals() si hashCode(), si sa fie serializabila
     @Id
     @Column(name = "user_id")
-    private Long userId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
 
     @Id
     @Column(name = "post_id")
-    private Long postId;
+    @OneToOne
+    @JoinColumn(name = "postComment_id")
+    private PostComment postId;
 
     @Column(name = "type")
     private String type;
@@ -21,25 +25,25 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(Long userId, Long postId, String type) {
+    public Vote(User userId, PostComment postId, String type) {
         this.userId = userId;
         this.postId = postId;
         this.type = type;
     }
 
-    public Long getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
-    public Long getPostId() {
+    public PostComment getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(PostComment postId) {
         this.postId = postId;
     }
 
