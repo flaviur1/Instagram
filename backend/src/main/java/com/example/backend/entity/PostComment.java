@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -37,6 +38,7 @@ public class PostComment {
     private LocalDateTime dateTime;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "parent_id", nullable = true)
     private PostComment parent;
 
