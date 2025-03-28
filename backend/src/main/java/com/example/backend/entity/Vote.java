@@ -8,16 +8,14 @@ import jakarta.persistence.*;
 public class Vote {
     //ca sa avem o cheie compusa, facem o noua clasa publica care trebuie sa aibe un contructor gol, sa implementam equals() si hashCode(), si sa fie serializabila
     @Id
-    @Column(name = "user_id")
     @OneToOne
     @JoinColumn(name = "user_id")
     private User userId;
 
     @Id
-    @Column(name = "post_id")
     @OneToOne
     @JoinColumn(name = "postComment_id")
-    private PostComment postId;
+    private PostComment postComment_id;
 
     @Column(name = "type")
     private String type;
@@ -25,9 +23,9 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(User userId, PostComment postId, String type) {
+    public Vote(User userId, PostComment postComment_id, String type) {
         this.userId = userId;
-        this.postId = postId;
+        this.postComment_id = postComment_id;
         this.type = type;
     }
 
@@ -39,12 +37,12 @@ public class Vote {
         this.userId = userId;
     }
 
-    public PostComment getPostId() {
-        return postId;
+    public PostComment getPostCommentId() {
+        return postComment_id;
     }
 
-    public void setPostId(PostComment postId) {
-        this.postId = postId;
+    public void setPostCommentId(PostComment postId) {
+        this.postComment_id = postId;
     }
 
     public String getType() {

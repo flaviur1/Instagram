@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class VoteId implements Serializable {
     private Long userId;
-    private Long postId;
+    private Long postComment_id;
 
     public VoteId() {
     }
 
-    public VoteId(Long userId, Long postId) {
+    public VoteId(Long userId, Long postComment_id) {
         this.userId = userId;
-        this.postId = postId;
+        this.postComment_id = postComment_id;
     }
 
     @Override
@@ -22,13 +22,13 @@ public class VoteId implements Serializable {
             return false;
 
         VoteId aux = (VoteId) obj;
-        return this.userId.equals(aux.userId) && this.postId.equals(aux.postId);
+        return this.userId.equals(aux.userId) && this.postComment_id.equals(aux.postComment_id);
     }
 
     @Override
     public int hashCode() {
         int hash = 100;
-        hash = 42 * hash + userId.hashCode() + postId.hashCode();
+        hash = 42 * hash + userId.hashCode() + postComment_id.hashCode();
 
         return hash;
     }
@@ -41,11 +41,11 @@ public class VoteId implements Serializable {
         this.userId = userId;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getPostCommentId() {
+        return postComment_id;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setPostCommentId(Long postId) {
+        this.postComment_id = postId;
     }
 }
