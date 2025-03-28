@@ -31,6 +31,5 @@ public class UserService {
         } catch (Exception e) {
             return "There was an error when deleting user with id = " + id;
         }
-
     }
 }

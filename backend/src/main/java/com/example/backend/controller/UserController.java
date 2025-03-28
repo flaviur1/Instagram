@@ -35,12 +35,13 @@ public class UserController {
 
     @DeleteMapping("/deleteById/{id}")
     @ResponseBody
-    public String deleteById(@PathVariable Long id){
+    public String deleteById(@PathVariable Long id) {
         return this.userService.deleteById(id);
     }
 
-//    @PutMapping
-//    @ResponseBody
-//    public User updateUser(User user){
-//    }
+    @PutMapping("/put")
+    @ResponseBody
+    public User updateUser(@RequestBody User user) {
+        return this.userService.addUser(user);
+    }
 }
