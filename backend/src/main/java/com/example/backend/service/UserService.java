@@ -1,6 +1,9 @@
 package com.example.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import com.example.backend.entity.User;
 import com.example.backend.repository.UserRepository;
@@ -11,6 +14,12 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JWTService jwtService;
 
     public List<User> getUsers() {
         return (List<User>) this.userRepository.findAll();
@@ -31,5 +40,27 @@ public class UserService {
         } catch (Exception e) {
             return "There was an error when deleting user with id = " + id;
         }
+    }
+
+    public String verify(User user) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+            if (authentication.isAuthenticated()) {
+                return jwtService.generateToken();
+            }
+        } catch (Exception ignored) {
+        }
+
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+            if (authentication.isAuthenticated()) {
+                return jwtService.generateToken();
+            }
+        } catch (Exception ignored) {
+        }
+
+        return "Authentication Failure";
     }
 }

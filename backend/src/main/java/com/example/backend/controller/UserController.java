@@ -44,4 +44,9 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         return this.userService.addUser(user);
     }
+
+    @PostMapping("/login")
+    public String login(@RequestBody User user){
+        return userService.verify(user);
+    }
 }
