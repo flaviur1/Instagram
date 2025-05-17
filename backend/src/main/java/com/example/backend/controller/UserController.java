@@ -1,9 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.entity.User;
-import com.example.backend.repository.UserRepository;
 import com.example.backend.service.UserService;
-import org.springframework.aot.hint.annotation.RegisterReflection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

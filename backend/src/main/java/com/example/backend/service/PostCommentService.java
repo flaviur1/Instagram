@@ -1,13 +1,9 @@
 package com.example.backend.service;
 
 import com.example.backend.entity.PostComment;
-import com.example.backend.entity.PostTag;
-import com.example.backend.entity.User;
 import com.example.backend.repository.PostCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.interceptor.CachePutOperation;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;

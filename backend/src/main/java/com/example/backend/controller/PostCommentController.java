@@ -1,13 +1,9 @@
 package com.example.backend.controller;
 
 import com.example.backend.entity.PostComment;
-import com.example.backend.entity.PostTag;
-import com.example.backend.entity.User;
 import com.example.backend.service.PostCommentService;
-import org.hibernate.annotations.ConcreteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
