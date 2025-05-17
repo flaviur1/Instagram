@@ -50,7 +50,7 @@ public class UserService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             if (authentication.isAuthenticated()) {
-                return jwtService.generateToken();
+                return jwtService.generateToken(user.getUsername());
             }
         } catch (Exception ignored) {
         }
@@ -59,7 +59,7 @@ public class UserService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
             if (authentication.isAuthenticated()) {
-                return jwtService.generateToken();
+                return jwtService.generateToken(user.getUsername());
             }
         } catch (Exception ignored) {
         }
