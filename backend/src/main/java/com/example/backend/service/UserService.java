@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.backend.entity.User;
 import com.example.backend.repository.UserRepository;
@@ -28,6 +29,8 @@ public class UserService {
     public User addUser(User user) {
         return this.userRepository.save(user);
     }
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public User findById(Long id) {
         return this.userRepository.findById(id).isPresent() ? this.userRepository.findById(id).get() : null;
@@ -62,5 +65,10 @@ public class UserService {
         }
 
         return "Authentication Failure";
+    }
+
+    public User register(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 }
