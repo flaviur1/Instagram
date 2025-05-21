@@ -1,0 +1,61 @@
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.welcome-box {
+  width: 60rem;
+  height: 40rem;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.welcome-text {
+  font-size: 5rem;
+  color: rgb(97, 17, 163);
+  padding-bottom: 3rem;
+}
+
+.user-input {
+  width: 20rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+}
+
+.password-input {
+  width: 20rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  width: 20rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.register-box {
+  width: 60rem;
+  height: 50rem;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.register-input {
+  width: 20rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+}
+
+.insert-text {
+  font-size: 5rem;
+  color: rgb(97, 17, 163);
+}
