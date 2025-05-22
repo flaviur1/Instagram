@@ -3,6 +3,7 @@ package com.example.backend.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -31,6 +32,7 @@ public class SecurityConfig {
         http.csrf(customizer -> customizer.disable());
         // ca sa faci orice, trebuie sa fii autentificat
         http.authorizeHttpRequests(auth -> auth.requestMatchers("api/users/login", "api/users/register").permitAll());
+        http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()); // CORS preflight fails, so we add this to make sure it works
         http.authorizeHttpRequests(request -> request.anyRequest().authenticated());
         //http.formLogin(Customizer.withDefaults());
         http.httpBasic(Customizer.withDefaults()); // ca sa mearga si din postman
