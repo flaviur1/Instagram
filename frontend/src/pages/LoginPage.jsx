@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/LoginPage.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [register, setRegister] = useState(false);
@@ -8,6 +9,7 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [telephone, setTelephone] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   console.log(register);
 
@@ -27,10 +29,15 @@ function LoginPage() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/users/login",
-        {username, password }
+        { username, password }
       );
       console.log(response.data);
-
+      if (response.data != "Authentication Failure") {
+        const token = response.data; // adjust based on your backend response
+        localStorage.setItem("token", token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        navigate("/home");
+      }
     } catch (error) {
       console.log(error);
     }

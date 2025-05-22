@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   return (
@@ -10,10 +12,11 @@ function App() {
         <LoginPage></LoginPage>
       </div> */}
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<LoginPage />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        {/* punem aici register ca nu am facut pagina separata de register */}
+        <Route path="/register" element={<LoginPage />} /> 
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
