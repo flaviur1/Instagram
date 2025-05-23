@@ -14,10 +14,10 @@ function App() {
         <LoginPage></LoginPage>
       </div> */}
       <Routes>
-        <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         {/* punem aici register ca nu am facut pagina separata de register */}
         <Route path="/register" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/post/add" element={<AddPostPage />} />
         <Route path="*" element={<NotFound />} />

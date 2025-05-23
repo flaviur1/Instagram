@@ -8,7 +8,6 @@ function AddPostPage() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [imagePath, setImagePath] = useState("");
-//   const [userId, setUserId] = useState(0);
 
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
@@ -25,9 +24,6 @@ function AddPostPage() {
       );
       console.log(response1.data);
       const userId = response1.data;
-    //   setUserId(response1.data.id);
-    //   console.log(userId);
-    //   localStorage.setItem("user id", userId);
 
       const response = await axios.post("/api/posts/add", {
         title,
@@ -35,17 +31,18 @@ function AddPostPage() {
         imagePath,
         userId,
       });
+      navigate("/home");
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    if (!localStorage.getItem("username")) {
-      navigate("/login");
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (!localStorage.getItem("username")) {
+  //       navigate("/login");
+  //     }
+  //   }, []);
 
   return (
     <div>

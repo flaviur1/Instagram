@@ -5,11 +5,19 @@
   align-items: center;
 }
 
-.text {
+.insta-button {
   font-size: 1.5rem;
   margin-left: 2rem;
   color: rgb(221, 42, 123);
+  background-color: white;
+  border: 0;
 }
+
+.insta-button:hover {
+    color: rgb(81,91,212);
+    cursor: pointer;
+}
+
 
 .search-bar {
   height: 2rem;

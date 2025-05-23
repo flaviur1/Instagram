@@ -4,12 +4,32 @@ import SearchBar from "./SearchBar";
 
 function Header() {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <div className="header">
-      <p className="text">Instagram</p>
+      <button
+        className="insta-button"
+        onClick={() => {
+          navigate("/home");
+        }}
+      >
+        Instagram
+      </button>
       <SearchBar className="search-bar"></SearchBar>
       <div>
-        <button className="header-button">Log out</button>
+        <button
+          className="header-button"
+          onClick={() => {
+            handleLogout();
+          }}
+        >
+          Log out
+        </button>
         <button
           className="header-button"
           onClick={() => {
