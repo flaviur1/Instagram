@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import AddPostPage from "./pages/AddPostPage.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* punem aici register ca nu am facut pagina separata de register */}
         <Route path="/register" element={<LoginPage />} />
         <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/post/add" element={<AddPostPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

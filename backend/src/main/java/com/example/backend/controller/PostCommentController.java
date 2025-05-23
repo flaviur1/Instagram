@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:5173")
+
 @Controller
 @RequestMapping("/api/posts")
 public class PostCommentController {
@@ -22,7 +22,7 @@ public class PostCommentController {
 
     @PostMapping("/add")
     @ResponseBody
-    public PostComment addPostComment(PostComment postComment) {
+    public PostComment addPostComment(@RequestBody PostComment postComment) {
         return this.postCommentService.addPostComment(postComment);
     }
 

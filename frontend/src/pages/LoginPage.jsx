@@ -83,14 +83,14 @@ function LoginPage() {
 
         <div>
           <button
-            className="button"
+            className="login-button"
             onClick={() => {
               sendToRegister();
             }}
           >
             Continue
           </button>
-          <button className="button" onClick={() => setRegister(false)}>
+          <button className="login-button" onClick={() => setRegister(false)}>
             Go Back
           </button>
         </div>
@@ -119,14 +119,14 @@ function LoginPage() {
 
         <div>
           <button
-            className="button"
+            className="login-button"
             onClick={() => {
               sendToLogin();
             }}
           >
             Login
           </button>
-          <button className="button" onClick={() => setRegister(true)}>
+          <button className="login-button" onClick={() => setRegister(true)}>
             Register
           </button>
         </div>

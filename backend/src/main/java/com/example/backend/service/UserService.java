@@ -73,6 +73,6 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        return this.userRepository.findByUsername(username) == null ? this.userRepository.findByUsername(username) : null;
+        return this.userRepository.findByUsername(username) != null ? this.userRepository.findByUsername(username) : null;
     }
 }
