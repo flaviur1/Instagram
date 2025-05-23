@@ -6,12 +6,56 @@
 }
 
 .post-card {
-  background: #fff;
+  background: white;
   border-radius: 1/2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   padding: 1rem;
+  position: relative;
+  padding-left: 3rem;
 }
 
 .post-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.user {
+  width: 5rem;
+  height: 1.5rem;
+  border: 0;
+  background-color: white;
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+}
+
+.score-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+}
+    
+.like {
+  width: 1.5rem;
+  height: 2rem;
+  /* position: absolute;
+  left: 1rem;
+  bottom: 3rem;
+  margin-bottom: 1rem; */
+}
+
+.dislike {
+  width: 1.5rem;
+  height: 2rem;
+  /* position: absolute;
+  left: 1rem;
+  bottom: 1rem; */
+}
+
+.button:hover {
+  cursor: pointer;
+  color: red;
 }

@@ -26,13 +26,23 @@ function HomePage() {
       <div>
         <Header></Header>
       </div>
-      
+
       <div className="posts-container">
         {posts.map((post) => (
           <div className="post-card" key={post.id}>
             <h3>{post.title || "Untitled Post"}</h3>
-            <h4>{post.userId.username || "null"}</h4>
-            <p>{post.content || JSON.stringify(post)}</p>
+
+            <button className="user button">
+              {post.userId.username || "null"}
+            </button>
+
+            <p>{post.text || ""}</p>
+
+            <div className="score-div">
+              <button className="like button">l</button>
+              <p className="score">{post.score || 0}</p>
+              <button className="dislike button">d</button>
+            </div>
           </div>
         ))}
       </div>

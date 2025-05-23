@@ -35,6 +35,7 @@ function LoginPage() {
       if (response.data != "Authentication Failure") {
         const token = response.data; // adjust based on your backend response
         localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         navigate("/home");
       }

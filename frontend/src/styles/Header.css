@@ -13,11 +13,12 @@
 
 .search-bar {
   height: 2rem;
-  width: 20rem;
+  width: 25rem;
+  text-align: center;
 }
 
-.log-out-button {
-  margin-right: 2rem;
+.header-button {
   width: 5rem;
   height: 2rem;
+  margin-right: 1rem;
 }

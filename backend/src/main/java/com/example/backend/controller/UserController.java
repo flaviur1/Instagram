@@ -53,4 +53,10 @@ public class UserController {
     public User register(@RequestBody User user) {
         return userService.register(user);
     }
+
+    @GetMapping("/findByUsername/{username}")
+    @ResponseBody
+    public User findUserByUsername(@PathVariable String username) {
+        return this.userService.findUserByUsername(username);
+    }
 }

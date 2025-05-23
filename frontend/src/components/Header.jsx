@@ -3,11 +3,22 @@ import "../styles/Header.css";
 import SearchBar from "./SearchBar";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <div className="header">
       <p className="text">Instagram</p>
       <SearchBar className="search-bar"></SearchBar>
-      <button className="log-out-button">Log out</button>
+      <div>
+        <button className="header-button">Log out</button>
+        <button
+          className="header-button"
+          onClick={() => {
+            navigate("/post/add");
+          }}
+        >
+          Add Post
+        </button>
+      </div>
     </div>
   );
 }
