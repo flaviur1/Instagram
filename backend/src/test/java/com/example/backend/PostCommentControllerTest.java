@@ -68,7 +68,7 @@ class PostCommentControllerTest {
     void testFindById() {
         when(postCommentService.findById(1L)).thenReturn(testPostComment);
 
-        PostComment result = postCommentController.findUserById(1L);
+        PostComment result = postCommentController.findPostCommentById(1L);
 
         assertEquals(testPostComment, result);
         verify(postCommentService, times(1)).findById(1L);

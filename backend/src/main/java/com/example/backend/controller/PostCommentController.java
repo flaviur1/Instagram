@@ -28,7 +28,7 @@ public class PostCommentController {
 
     @GetMapping("/findById/{id}")
     @ResponseBody
-    public PostComment findUserById(@PathVariable Long id) {
+    public PostComment findPostCommentById(@PathVariable Long id) {
         return this.postCommentService.findById(id);
     }
 
@@ -53,7 +53,7 @@ public class PostCommentController {
     @GetMapping("/isPostById/{id}")
     @ResponseBody
     public Boolean isPost(@PathVariable Long id) {
-        return this.postCommentService.isPost(findUserById(id));
+        return this.postCommentService.isPost(findPostCommentById(id));
     }
 
     @GetMapping("/getAllPosts")
@@ -66,5 +66,11 @@ public class PostCommentController {
     @ResponseBody
     public List<PostComment> getAllComments() {
         return this.postCommentService.getAllComments();
+    }
+
+    @GetMapping("/getAllPostsByUser/{id}")
+    @ResponseBody
+    public List<PostComment> getAllPostsByUser(@PathVariable Long id) {
+        return this.postCommentService.getAllPostsByUser(id);
     }
 }

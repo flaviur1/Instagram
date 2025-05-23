@@ -21,6 +21,16 @@ function HomePage() {
     getPosts();
   }, []);
 
+  const handleUserClick = async (username) => {
+    try {
+      const response = await axios.get("/api/users/findByUsername/" + username);
+      const id = response.data.id;
+      navigate("/user/" + id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -32,7 +42,12 @@ function HomePage() {
           <div className="post-card" key={post.id}>
             <h3>{post.title || "Untitled Post"}</h3>
 
-            <button className="user button">
+            <button
+              className="user button"
+              onClick={() => {
+                handleUserClick(post.userId.username);
+              }}
+            >
               {post.userId.username || "null"}
             </button>
 

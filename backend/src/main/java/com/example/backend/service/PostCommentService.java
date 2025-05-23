@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostCommentService {
@@ -45,15 +46,27 @@ public class PostCommentService {
         return findById(id).getParent();
     }
 
-    public List<PostComment> getAllPosts(){
+    public List<PostComment> getAllPosts() {
         ArrayList<PostComment> list = (ArrayList<PostComment>) this.postCommentRepository.findAll();
         list.removeIf(post -> !isPost(post));
         return list;
     }
 
-    public List<PostComment> getAllComments(){
+    public List<PostComment> getAllComments() {
         ArrayList<PostComment> list = (ArrayList<PostComment>) this.postCommentRepository.findAll();
         list.removeIf(post -> isPost(post));
         return list;
     }
+
+    public List<PostComment> getAllPostsByUser(Long id) {
+        ArrayList<PostComment> allPostComments = (ArrayList<PostComment>) this.postCommentRepository.findAll();
+        return allPostComments.stream()
+                .filter(postComment ->
+                        isPost(postComment) &&
+                                postComment.getUserId() != null &&
+                                postComment.getUserId().getId().equals(id)
+                )
+                .collect(Collectors.toList());
+    }
 }
+
