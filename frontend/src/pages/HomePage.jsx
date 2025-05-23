@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/HomePage.css";
 import axios from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 function HomePage() {
   const [posts, setPosts] = useState([]);
@@ -21,15 +22,20 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="posts-container">
-      {posts.map((post) => (
-        <div className="post-card" key={post.id}>
-          <h3>{post.title || "Untitled Post"}</h3>
-          <h4>{post.userId.username || "null"}</h4>
-          <p>{post.content || JSON.stringify(post)}</p>
-          {/* Add more fields as needed */}
-        </div>
-      ))}
+    <div>
+      <div>
+        <Header></Header>
+      </div>
+      
+      <div className="posts-container">
+        {posts.map((post) => (
+          <div className="post-card" key={post.id}>
+            <h3>{post.title || "Untitled Post"}</h3>
+            <h4>{post.userId.username || "null"}</h4>
+            <p>{post.content || JSON.stringify(post)}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

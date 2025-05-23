@@ -1,0 +1,23 @@
+.header {
+  /* background-color: rgb(129,52,175); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  color: rgb(221, 42, 123);
+}
+
+.search-bar {
+  height: 2rem;
+  width: 20rem;
+}
+
+.log-out-button {
+  margin-right: 2rem;
+  width: 5rem;
+  height: 2rem;
+}
