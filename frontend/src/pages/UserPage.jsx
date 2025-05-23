@@ -16,7 +16,7 @@ function UserPage() {
         const response = await axios.get("/api/users/findById/" + id);
         setUser(response.data);
 
-        const response2 = await axios.get("/api/posts/getAllPostsByUser/" + id);
+        const response2 = await axios.get("/api/posts/getAllPostsByUser/" + id)
         setPosts(response2.data);
       } catch (error) {
         console.log(error);
@@ -59,6 +59,7 @@ function UserPage() {
           </div>
         ))}
       </div>
+      
     </div>
   );
 }
