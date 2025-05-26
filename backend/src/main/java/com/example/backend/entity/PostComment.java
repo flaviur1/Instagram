@@ -22,7 +22,7 @@ public class PostComment {
     @Column(name = "postComment_title")
     private String title;
 
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 
     @Column(name = "image")

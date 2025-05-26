@@ -42,14 +42,16 @@ function HomePage() {
           <div className="post-card" key={post.id}>
             <h3>{post.title || "Untitled Post"}</h3>
 
-            <button
-              className="user button"
-              onClick={() => {
-                handleUserClick(post.userId.username);
-              }}
-            >
-              {post.userId.username || "null"}
-            </button>
+            <div>
+              <button
+                className="user button"
+                onClick={() => {
+                  handleUserClick(post.userId.username);
+                }}
+              >
+                {post.userId.username || "null"}
+              </button>
+            </div>
 
             <p>{post.text || ""}</p>
 

@@ -12,11 +12,6 @@ function AddPostPage() {
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
 
-  //   let date = new Date().toLocaleString();
-  //   console.log(date);
-
-  //   console.log(localStorage.getItem("username"));
-
   const addPost = async () => {
     try {
       const response1 = await axios.get(
@@ -33,6 +28,7 @@ function AddPostPage() {
       });
       navigate("/home");
       console.log(response.data);
+      let date = response.data.dateTime;
     } catch (error) {
       console.log(error);
     }

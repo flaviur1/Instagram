@@ -4,7 +4,9 @@ import com.example.backend.entity.PostComment;
 import com.example.backend.repository.PostCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +27,7 @@ public class PostCommentService {
     }
 
     public PostComment addPostComment(PostComment postComment) {
+        postComment.setDateTime(LocalDateTime.now());
         return this.postCommentRepository.save(postComment);
     }
 
@@ -67,6 +70,14 @@ public class PostCommentService {
                                 postComment.getUserId().getId().equals(id)
                 )
                 .collect(Collectors.toList());
+    }
+
+
+    public PostComment addComment(PostComment postComment, Long id) {
+        PostComment postCommentFound = this.postCommentRepository.findById(id).isPresent() ? this.postCommentRepository.findById(id).get() : null;
+        postComment.setParent(postCommentFound);
+        postComment.setDateTime(LocalDateTime.now());
+        return this.postCommentRepository.save(postComment);
     }
 }
 
