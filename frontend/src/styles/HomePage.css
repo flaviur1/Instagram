@@ -37,7 +37,7 @@
   left: 1rem;
   top: 0.5rem;
 }
-    
+
 .like {
   width: 1.5rem;
   height: 2rem;
@@ -55,7 +55,15 @@
   bottom: 1rem; */
 }
 
+.post_button {
+  border: 0;
+  background-color: white;
+  padding: 0;
+  font-size: 1rem;
+}
+
 .button:hover {
   cursor: pointer;
   color: red;
+
 }

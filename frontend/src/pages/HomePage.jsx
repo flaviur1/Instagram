@@ -40,7 +40,14 @@ function HomePage() {
       <div className="posts-container">
         {posts.map((post) => (
           <div className="post-card" key={post.id}>
-            <h3>{post.title || "Untitled Post"}</h3>
+            <button
+              className="post_button button"
+              onClick={() => {
+                navigate("/post/" + post.id);
+              }}
+            >
+              <h3>{post.title || "Untitled Post"}</h3>
+            </button>
 
             <div>
               <button
