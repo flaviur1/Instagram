@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Header from "../components/Header";
 import "../styles/EditPostPage.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ function EditPostPage() {
   const [text, setText] = useState("");
   const [imagePath, setImagePath] = useState("");
   const [userId, setUserId] = useState({});
+  const [replies, setReplies] = useState({});
 
   const navigate = useNavigate();
 
@@ -25,6 +26,12 @@ function EditPostPage() {
         setText(data.text);
         setImagePath(data.imagePath);
         setUserId(data.userId);
+        setReplies(data.replies);
+        const username = localStorage.getItem("username");
+
+        if (data.userId && username != data.userId.username) {
+          navigate("/home");
+        }
       } catch (error) {
         console.log(error);
       }
@@ -37,7 +44,14 @@ function EditPostPage() {
     try {
       const response1 = await axios.get("/api/posts/getParent/" + postid);
       console.log(response1.data);
-      const parent = response1.data;
+      let parent = response1.data;
+
+      if (
+        !parent ||
+        (typeof parent === "object" && Object.keys(parent).length === 0)
+      ) {
+        parent = null;
+      }
 
       const response = await axios.put("/api/posts/put", {
         id: postid,
@@ -46,6 +60,7 @@ function EditPostPage() {
         imagePath,
         userId,
         parent,
+        replies,
       });
       if (parent) navigate("/post/" + parent.id);
       else navigate("/home");
