@@ -63,6 +63,16 @@ function HomePage() {
               >
                 {post.userId.username || "null"}
               </button>
+
+              {/* {(function () {
+                if (localStorage.getItem("username") == post.userId.username)
+                  return (
+                    <button className="edit button" onClick={() => {}}>
+                      edit
+                    </button>
+                  );
+                else return undefined;
+              })()} */}
             </div>
 
             <p>{post.text || ""}</p>

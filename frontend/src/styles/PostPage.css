@@ -45,6 +45,21 @@
   top: 2rem;
 }
 
+.edit-post {
+  width: 5rem;
+  height: 2rem;
+}
+
+.edit-comment {
+  width: 5rem;
+  height: 1.5rem;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  right: 1rem;
+  bottom: 2rem;
+}
+
 .comment-score-div {
   display: flex;
   flex-direction: column;

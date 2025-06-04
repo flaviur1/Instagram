@@ -78,15 +78,31 @@ function PostPage() {
       <div className="post-body">
         <div>
           <h1>{post.title}</h1>
+
           <p>{(date = new Date(post.dateTime).toLocaleString())}</p>
+
           <p>{post.text}</p>
+
           {post.imagePath && (
             <img
               src={`${axios.defaults.baseURL}/images/${post.imagePath}`}
-              alt="Post"
+              alt="Image"
               className="post-image"
             />
           )}
+
+          {(function () {
+            if (
+              post.userId != undefined &&
+              localStorage.getItem("username") == post.userId.username
+            )
+              return (
+                <button className="edit-post button" onClick={() => {}}>
+                  Edit Post
+                </button>
+              );
+            else return undefined;
+          })()}
         </div>
 
         <div>
@@ -136,10 +152,23 @@ function PostPage() {
                 {reply.imagePath && (
                   <img
                     src={`${axios.defaults.baseURL}/images/${reply.imagePath}`}
-                    alt="Comment"
+                    alt="Image"
                     className="comment-image"
                   />
                 )}
+
+                {(function () {
+                  if (localStorage.getItem("username") == reply.userId.username)
+                    return (
+                      <button
+                        className="edit-comment button"
+                        onClick={() => {}}
+                      >
+                        Edit
+                      </button>
+                    );
+                  else return undefined;
+                })()}
               </p>
 
               <div className="comment-score-div">
