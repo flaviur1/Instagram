@@ -74,9 +74,9 @@ public class PostCommentController {
         return this.postCommentService.getAllPostsByUser(id);
     }
 
-    @PostMapping("/addComment")
+    @PostMapping("/addComment/{id}")
     @ResponseBody
-    public PostComment addComment(@RequestBody PostComment postComment, Long id){
-        return this.postCommentService.addComment(postComment,id);
+    public PostComment addComment(@PathVariable Long id, @RequestBody PostComment postComment) {
+        return this.postCommentService.addComment(postComment, id);
     }
 }

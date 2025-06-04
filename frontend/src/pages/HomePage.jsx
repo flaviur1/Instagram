@@ -41,7 +41,7 @@ function HomePage() {
         {posts.map((post) => (
           <div className="post-card" key={post.id}>
             <button
-              className="post_button button"
+              className="post-button button"
               onClick={() => {
                 navigate("/post/" + post.id);
               }}

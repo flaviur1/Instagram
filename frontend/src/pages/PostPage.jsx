@@ -10,7 +10,7 @@ function PostPage() {
   const [comments, setComments] = useState([]);
   const [buttonPressed, setButtonPressed] = useState(false);
   const [title, setTitle] = useState("");
-  const [text, setText] = useState("dasdas");
+  const [text, setText] = useState("");
   const [imagePath, setImagePath] = useState("");
 
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ function PostPage() {
         console.log(response.data);
         setPost(response.data);
         setComments(response.data.replies);
-        const parent = post;
       } catch (error) {
         console.log(error);
       }
@@ -40,20 +39,32 @@ function PostPage() {
       console.log(response1.data);
       const userId = response1.data;
 
-      const response = await axios.post("/api/posts/add/", {
+      const response = await axios.post("/api/posts/addComment/" + postid, {
         title,
         text,
         imagePath,
         userId,
-        parent,
       });
       console.log(response.data);
+      setText("");
+      setImagePath("");
+      setComments((previous) => [...previous, response.data]);
     } catch (error) {
       console.log(error);
     }
   };
 
-    let date = "";
+  let date = "";
+
+  const handleUserClick = async (username) => {
+    try {
+      const response = await axios.get("/api/users/findByUsername/" + username);
+      const id = response.data.id;
+      navigate("/user/" + id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -73,7 +84,7 @@ function PostPage() {
             type="text"
             placeholder="Write a comment"
             className="input-comment"
-            onChange={(val) => setTitle(val.target.value)}
+            onChange={(val) => setText(val.target.value)}
           />
 
           <input
@@ -93,11 +104,28 @@ function PostPage() {
           </button>
         </div>
 
-        <div>
+        <div className="comments-container">
           <h3>Comments:</h3>
           {comments.map((reply) => (
-            <div className="comment" key={reply.id}>
-              <p>{reply.title}</p>
+            <div className="comment-card" key={reply.id}>
+              <div>
+                <button
+                  className="user button"
+                  onClick={() => {
+                    handleUserClick(reply.userId.username);
+                  }}
+                >
+                  {reply.userId.username || "null"}
+                </button>
+              </div>
+
+              <p>{reply.text || ""}</p>
+
+              <div className="comment-score-div">
+                <button className="comment-like ">l</button>
+                <p className="comment-score">{reply.score || 0}</p>
+                <button className="comment-dislike ">d</button>
+              </div>
             </div>
           ))}
         </div>

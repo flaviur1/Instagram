@@ -53,6 +53,7 @@ public class PostComment {
         this.userId = userId;
         this.title = title;
         this.text = text;
+
         this.imagePath = imagePath;
         this.status = status;
         this.score = score;
