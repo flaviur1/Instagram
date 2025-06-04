@@ -7,6 +7,7 @@ import UserPage from "./pages/UserPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AddPostPage from "./pages/AddPostPage.jsx";
 import PostPage from "./pages/PostPage.jsx";
+import EditPostPage from "./pages/EditPostPage.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/post/add" element={<AddPostPage />} />
         <Route path="/post/:postid" element={<PostPage />} />
+        <Route path="/post/edit/:postid" element={<EditPostPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

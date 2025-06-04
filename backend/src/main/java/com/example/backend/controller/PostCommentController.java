@@ -40,7 +40,7 @@ public class PostCommentController {
 
     @PutMapping("/put")
     @ResponseBody
-    public PostComment put(PostComment postComment) {
+    public PostComment put(@RequestBody PostComment postComment) {
         return this.postCommentService.addPostComment(postComment);
     }
 

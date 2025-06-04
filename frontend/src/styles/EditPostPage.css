@@ -1,28 +1,34 @@
-.addPost-body {
+.editPost-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.input-body {
+.input-body-edit {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.text-input {
+.text-input-edit {
   width: 80vw;
   height: 2rem;
   margin: 1rem;
 }
 
 .description {
-    height: 50rem;
+  height: 50rem;
 }
 
-.create-button{
-    width: 10rem;
-    height: 3rem;
+.edit-button {
+  width: 10rem;
+  height: 3rem;
+  margin-right: 2rem;
+}
+
+.delete-button {
+  width: 10rem;
+  height: 3rem;
 }

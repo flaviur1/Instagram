@@ -48,6 +48,7 @@
 .edit-post {
   width: 5rem;
   height: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .edit-comment {

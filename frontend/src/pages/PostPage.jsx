@@ -39,10 +39,7 @@ function PostPage() {
       console.log(response1.data);
       const userId = response1.data;
 
-      setImagePath("/images/" + imagePath);
-
       const response = await axios.post("/api/posts/addComment/" + postid, {
-        title,
         text,
         imagePath,
         userId,
@@ -90,19 +87,25 @@ function PostPage() {
               className="post-image"
             />
           )}
-
-          {(function () {
-            if (
-              post.userId != undefined &&
-              localStorage.getItem("username") == post.userId.username
-            )
-              return (
-                <button className="edit-post button" onClick={() => {}}>
-                  Edit Post
-                </button>
-              );
-            else return undefined;
-          })()}
+          <div>
+            {(function () {
+              if (
+                post.userId != undefined &&
+                localStorage.getItem("username") == post.userId.username
+              )
+                return (
+                  <button
+                    className="edit-post button"
+                    onClick={() => {
+                      navigate("/post/edit/" + postid);
+                    }}
+                  >
+                    Edit Post
+                  </button>
+                );
+              else return undefined;
+            })()}
+          </div>
         </div>
 
         <div>
@@ -162,9 +165,11 @@ function PostPage() {
                     return (
                       <button
                         className="edit-comment button"
-                        onClick={() => {}}
+                        onClick={() => {
+                          navigate("/post/edit/" + reply.id);
+                        }}
                       >
-                        Edit
+                        edit
                       </button>
                     );
                   else return undefined;
