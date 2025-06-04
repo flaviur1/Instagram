@@ -79,4 +79,16 @@ public class PostCommentController {
     public PostComment addComment(@PathVariable Long id, @RequestBody PostComment postComment) {
         return this.postCommentService.addComment(postComment, id);
     }
+
+    @PutMapping("/addScore/{id}")
+    @ResponseBody
+    public PostComment addScoreToPostComment(@PathVariable Long id) {
+        return this.postCommentService.addScoreToPostComment(id);
+    }
+
+    @PutMapping("/minusScore/{id}")
+    @ResponseBody
+    public PostComment minusScoreToPostComment(@PathVariable Long id) {
+        return this.postCommentService.minusScoreToPostComment(id);
+    }
 }

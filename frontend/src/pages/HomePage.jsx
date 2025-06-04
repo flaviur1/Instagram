@@ -36,6 +36,36 @@ function HomePage() {
     }
   };
 
+  const handleLike = async (id) => {
+    try {
+      const response = await axios.put("/api/posts/addScore/" + id);
+      if (response.data) {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === response.data.id ? response.data : post
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDislike = async (id) => {
+    try {
+      const response = await axios.put("/api/posts/minusScore/" + id);
+      if (response.data) {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === response.data.id ? response.data : post
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -78,9 +108,23 @@ function HomePage() {
             <p>{post.text || ""}</p>
 
             <div className="score-div">
-              <button className="like button">l</button>
+              <button
+                className="like button"
+                onClick={() => {
+                  handleLike(post.id);
+                }}
+              >
+                l
+              </button>
               <p className="score">{post.score || 0}</p>
-              <button className="dislike button">d</button>
+              <button
+                className="dislike button"
+                onClick={() => {
+                  handleDislike(post.id);
+                }}
+              >
+                d
+              </button>
             </div>
           </div>
         ))}

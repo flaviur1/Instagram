@@ -72,12 +72,31 @@ public class PostCommentService {
                 .collect(Collectors.toList());
     }
 
-
     public PostComment addComment(PostComment postComment, Long id) {
         PostComment postCommentFound = this.postCommentRepository.findById(id).isPresent() ? this.postCommentRepository.findById(id).get() : null;
         postComment.setParent(postCommentFound);
         postComment.setDateTime(LocalDateTime.now());
         return this.postCommentRepository.save(postComment);
+    }
+
+    public PostComment addScoreToPostComment(Long id) {
+        if (this.postCommentRepository.findById(id).isPresent()) {
+            if (this.postCommentRepository.findById(id).get().getScore() == null)
+                this.postCommentRepository.findById(id).get().setScore(0L);
+            this.postCommentRepository.findById(id).get().setScore(this.postCommentRepository.findById(id).get().getScore() + 1);
+            this.postCommentRepository.save(this.postCommentRepository.findById(id).get());
+        }
+        return this.postCommentRepository.findById(id).isPresent() ? this.postCommentRepository.findById(id).get() : null;
+    }
+
+    public PostComment minusScoreToPostComment(Long id) {
+        if (this.postCommentRepository.findById(id).isPresent()) {
+            if (this.postCommentRepository.findById(id).get().getScore() == null)
+                this.postCommentRepository.findById(id).get().setScore(0L);
+            this.postCommentRepository.findById(id).get().setScore(this.postCommentRepository.findById(id).get().getScore() - 1);
+            this.postCommentRepository.save(this.postCommentRepository.findById(id).get());
+        }
+        return this.postCommentRepository.findById(id).isPresent() ? this.postCommentRepository.findById(id).get() : null;
     }
 }
 

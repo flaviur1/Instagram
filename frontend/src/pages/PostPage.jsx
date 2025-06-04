@@ -8,8 +8,6 @@ function PostPage() {
   const { postid } = useParams();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
-  const [buttonPressed, setButtonPressed] = useState(false);
-  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [imagePath, setImagePath] = useState("");
 
@@ -22,7 +20,13 @@ function PostPage() {
         const response = await axios.get("/api/posts/findById/" + postid);
         console.log(response.data);
         setPost(response.data);
-        setComments(response.data.replies);
+        let replies = response.data.replies;
+        const sortedReplies = replies.sort((a, b) => {
+          const scoreA = a.score !== null ? a.score : 0;
+          const scoreB = b.score !== null ? b.score : 0;
+          return scoreB - scoreA;
+        });
+        setComments(replies);
       } catch (error) {
         console.log(error);
       }
@@ -61,6 +65,48 @@ function PostPage() {
       const response = await axios.get("/api/users/findByUsername/" + username);
       const id = response.data.id;
       navigate("/user/" + id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLike = async (id) => {
+    try {
+      const response = await axios.put("/api/posts/addScore/" + id);
+      if (response.data) {
+        setComments((prevComments) => {
+          const updatedComments = prevComments.map((reply) =>
+            reply.id === response.data.id ? response.data : reply
+          );
+
+          return updatedComments.slice().sort((a, b) => {
+            const scoreA = a.score !== null ? a.score : 0;
+            const scoreB = b.score !== null ? b.score : 0;
+            return scoreB - scoreA;
+          });
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDislike = async (id) => {
+    try {
+      const response = await axios.put("/api/posts/minusScore/" + id);
+      if (response.data) {
+        setComments((prevComments) => {
+          const updatedComments = prevComments.map((reply) =>
+            reply.id === response.data.id ? response.data : reply
+          );
+
+          return updatedComments.slice().sort((a, b) => {
+            const scoreA = a.score !== null ? a.score : 0;
+            const scoreB = b.score !== null ? b.score : 0;
+            return scoreB - scoreA;
+          });
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -177,9 +223,23 @@ function PostPage() {
               </p>
 
               <div className="comment-score-div">
-                <button className="comment-like ">l</button>
+                <button
+                  className="comment-like"
+                  onClick={() => {
+                    handleLike(reply.id);
+                  }}
+                >
+                  l
+                </button>
                 <p className="comment-score">{reply.score || 0}</p>
-                <button className="comment-dislike ">d</button>
+                <button
+                  className="comment-dislike"
+                  onClick={() => {
+                    handleDislike(reply.id);
+                  }}
+                >
+                  d
+                </button>
               </div>
             </div>
           ))}
