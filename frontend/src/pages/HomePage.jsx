@@ -12,7 +12,12 @@ function HomePage() {
     const getPosts = async () => {
       try {
         const response = await axios.get("/api/posts/getAllPosts");
-        setPosts(response.data);
+        const sortedPosts = response.data.sort((a, b) => {
+          const dateA = new Date(a.dateTime);
+          const dateB = new Date(b.dateTime);
+          return dateB - dateA;
+        });
+        setPosts(sortedPosts);
       } catch (error) {
         console.log(error);
       }

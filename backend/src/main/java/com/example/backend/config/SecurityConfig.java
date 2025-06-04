@@ -37,7 +37,7 @@ public class SecurityConfig {
         http.csrf(customizer -> customizer.disable());
         // ca sa faci orice, trebuie sa fii autentificat
         http.cors(Customizer.withDefaults());
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("api/users/login", "api/users/register").permitAll());
+        http.authorizeHttpRequests(auth -> auth.requestMatchers("api/users/login", "api/users/register", "images/**").permitAll());
         http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()); // CORS preflight fails, so we add this to make sure it works
         http.authorizeHttpRequests(request -> request.anyRequest().authenticated());
         //http.formLogin(Customizer.withDefaults());

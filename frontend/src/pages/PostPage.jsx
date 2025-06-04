@@ -39,6 +39,8 @@ function PostPage() {
       console.log(response1.data);
       const userId = response1.data;
 
+      setImagePath("/images/" + imagePath);
+
       const response = await axios.post("/api/posts/addComment/" + postid, {
         title,
         text,
@@ -55,6 +57,7 @@ function PostPage() {
   };
 
   let date = "";
+  let dateComment = "";
 
   const handleUserClick = async (username) => {
     try {
@@ -77,6 +80,13 @@ function PostPage() {
           <h1>{post.title}</h1>
           <p>{(date = new Date(post.dateTime).toLocaleString())}</p>
           <p>{post.text}</p>
+          {post.imagePath && (
+            <img
+              src={`${axios.defaults.baseURL}/images/${post.imagePath}`}
+              alt="Post"
+              className="post-image"
+            />
+          )}
         </div>
 
         <div>
@@ -119,7 +129,18 @@ function PostPage() {
                 </button>
               </div>
 
+              <p>{(dateComment = new Date(reply.dateTime).toLocaleString())}</p>
+
               <p>{reply.text || ""}</p>
+              <p>
+                {reply.imagePath && (
+                  <img
+                    src={`${axios.defaults.baseURL}/images/${reply.imagePath}`}
+                    alt="Comment"
+                    className="comment-image"
+                  />
+                )}
+              </p>
 
               <div className="comment-score-div">
                 <button className="comment-like ">l</button>
